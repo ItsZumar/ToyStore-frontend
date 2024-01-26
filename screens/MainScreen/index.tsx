@@ -1,7 +1,13 @@
 import {StyleSheet} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {FavouritesScreen, HomeScreen, ProfileScreen, SettingsScreen} from '..';
+import {
+  CartScreen,
+  FavouritesScreen,
+  HomeScreen,
+  ProfileScreen,
+  SettingsScreen,
+} from '..';
 import Icon from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors} from '../../Utils';
@@ -40,6 +46,16 @@ export const MainScreen = () => {
         }}
       />
       <Tab.Screen
+        name="CartScreen"
+        component={CartScreen}
+        options={{
+          tabBarLabel: 'Cart',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="cart" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="SettingsScreen"
         component={SettingsScreen}
         options={{
@@ -49,6 +65,7 @@ export const MainScreen = () => {
           ),
         }}
       />
+
       <Tab.Screen
         name="ProfileScreen"
         component={ProfileScreen}

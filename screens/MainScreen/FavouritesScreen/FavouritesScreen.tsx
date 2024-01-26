@@ -5,7 +5,7 @@ import {AppHeader} from '../../../Components';
 export const FavouritesScreen = () => {
   return (
     <>
-      <AppHeader title="Contact Us" rightIcon="notification" />
+      <AppHeader title="My Favourites" rightIcon="heart" />
       <View style={styles.container}></View>
     </>
   );

@@ -5,7 +5,7 @@ import {AppHeader} from '../../../Components';
 export const ProfileScreen = () => {
   return (
     <>
-      <AppHeader title="Profile Screen" rightIcon="notification" />
+      <AppHeader title="Profile Screen" rightIcon="" />
       <View style={styles.container}></View>
     </>
   );

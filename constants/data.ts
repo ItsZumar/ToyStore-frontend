@@ -78,3 +78,102 @@ export const PRODUCTS_DATA: PRODUCTS_DATA_I[] = [
     isLiked: false,
   },
 ];
+
+export interface TRENDY_PRODUCTS_I {
+  id: number;
+  title: string;
+  subTitle: string;
+  price: number;
+}
+
+export const TRENDY_PRODUCTS_DATA: TRENDY_PRODUCTS_I[] = [
+  {
+    id: 0,
+    title: 'Ghorano Corka',
+    subTitle: 'Popular Category',
+    price: 20,
+  },
+  {
+    id: 1,
+    title: 'Ghorano Corka',
+    subTitle: 'Popular Category',
+    price: 30,
+  },
+  {
+    id: 2,
+    title: 'Ghorano Corka',
+    subTitle: 'Popular Category',
+    price: 40,
+  },
+  {
+    id: 3,
+    title: 'Ghorano Corka',
+    subTitle: 'Popular Category',
+    price: 40,
+  },
+  {
+    id: 4,
+    title: 'Ghorano Corka',
+    subTitle: 'Popular Category',
+    price: 40,
+  },
+];
+
+export interface NOTIFICATIONS_I {
+  id: number;
+  image: ImageSourcePropType;
+  description: string;
+  date: any;
+}
+
+export const NOTIFICATIONS_DATA: NOTIFICATIONS_I[] = [
+  {
+    id: 0,
+    image: require('../assets/images/teddybear.png'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    date: '10:00AM',
+  },
+  {
+    id: 1,
+    image: require('../assets/images/teddybear.png'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    date: '10:00AM',
+  },
+  {
+    id: 2,
+    image: require('../assets/images/teddybear.png'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    date: '10:00AM',
+  },
+  {
+    id: 3,
+    image: require('../assets/images/teddybear.png'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    date: '10:00AM',
+  },
+  {
+    id: 4,
+    image: require('../assets/images/teddybear.png'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    date: '10:00AM',
+  },
+  {
+    id: 5,
+    image: require('../assets/images/teddybear.png'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    date: '10:00AM',
+  },
+  {
+    id: 6,
+    image: require('../assets/images/teddybear.png'),
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+    date: '10:00AM',
+  },
+];

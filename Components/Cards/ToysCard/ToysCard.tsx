@@ -1,30 +1,38 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import {PRODUCTS_DATA_I} from '../../../constants/data';
 import {Colors} from '../../../Utils';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Dimensions} from 'react-native';
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 interface ToysCardI {
   item: PRODUCTS_DATA_I;
+  onPressHandler: (item: PRODUCTS_DATA_I) => void;
 }
 
 const ColorsPalete = [
-  Colors.lightPink,
+  Colors.lightPink01,
   Colors.lightBlue,
   Colors.lightAqua,
-  Colors.lightPink,
+  Colors.lightPink01,
   Colors.lightGreen,
   Colors.lightYellow,
 ];
 
-const ToysCard = ({item}: ToysCardI) => {
+const ToysCard = ({item, onPressHandler}: ToysCardI) => {
   return (
-    <View
+    <TouchableOpacity
       style={[styles.toyContainer, {backgroundColor: ColorsPalete[item.id]}]}
-      key={item.id}>
+      key={item.id}
+      onPress={() => onPressHandler(item)}>
       <View>
         <View
           style={{
@@ -40,15 +48,12 @@ const ToysCard = ({item}: ToysCardI) => {
         <Text style={styles.toyRating}>{`⭐ ${item.ratings}`}</Text>
         <Text style={styles.toyPrice}>{`$${item.price}`}</Text>
       </View>
-      <Image
-        source={item.image}
-        style={{width: 100, height: 100, alignSelf: 'center'}}
-      />
+      <Image source={item.image} style={styles.productImage} />
 
       <TouchableOpacity style={styles.btnContainer}>
         <Text style={styles.btnText}>Add to cart</Text>
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -56,10 +61,10 @@ export {ToysCard};
 
 const styles = StyleSheet.create({
   toyContainer: {
-    flex: 1,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    width: width * 0.427,
+    padding: 15,
     borderRadius: 15,
+    elevation: 1,
   },
   toyTitle: {
     fontWeight: '700',
@@ -75,6 +80,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
   },
+  productImage: {
+    width: 100,
+    height: 100,
+    alignSelf: 'center',
+  },
   btnText: {
     color: Colors.white,
     fontWeight: '700',
@@ -87,5 +97,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 7,
     marginVertical: 10,
+    // elevation: 3,
   },
 });

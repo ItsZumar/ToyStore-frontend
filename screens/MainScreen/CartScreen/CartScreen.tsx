@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {AppHeader} from '../../../Components';
 
-export const SettingsScreen = () => {
+export const CartScreen = () => {
   return (
     <>
-      <AppHeader title="Settings Us" rightIcon="" />
+      <AppHeader title="Your Cart" rightIcon="" />
       <View style={styles.container}></View>
     </>
   );

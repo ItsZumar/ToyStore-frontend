@@ -1,7 +1,7 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../../Utils';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface AppHeaderProps {
   title: string;
@@ -20,15 +20,15 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
 }) => {
   return (
     <View style={styles.headerContainer}>
-      {leftIcon && (
-        <TouchableOpacity style={styles.iconContainer} onPress={onLeftPress}>
-          <MaterialCommunityIcons
-            name={leftIcon}
-            size={22}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity
+        style={[styles.iconContainer, leftIcon ? {opacity: 1} : {opacity: 0}]}
+        onPress={onLeftPress}>
+        <MaterialCommunityIcons
+          name={leftIcon ? leftIcon : 'keyboard-backspace'}
+          size={22}
+          style={styles.icon}
+        />
+      </TouchableOpacity>
 
       {title && (
         <Text style={styles.headerText}>
@@ -36,32 +36,33 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
         </Text>
       )}
 
-      {rightIcon && (
-        <TouchableOpacity style={styles.iconContainer} onPress={onRightPress}>
-          <MaterialCommunityIcons
-            name={rightIcon}
-            size={22}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity
+        style={[styles.iconContainer, rightIcon ? {opacity: 1} : {opacity: 0}]}
+        onPress={onRightPress}>
+        <MaterialCommunityIcons
+          name={rightIcon ? rightIcon : 'keyboard-backspace'}
+          size={22}
+          style={styles.icon}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
     paddingVertical: 12,
     paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    // elevation: 6,
+    elevation: 1,
   },
   headerText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700',
+    color: Colors.black,
   },
   iconContainer: {
     backgroundColor: Colors.primary,
@@ -69,6 +70,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   icon: {
-    color: '#fff',
+    color: Colors.white,
   },
 });
