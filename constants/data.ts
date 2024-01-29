@@ -177,3 +177,42 @@ export const NOTIFICATIONS_DATA: NOTIFICATIONS_I[] = [
     date: '10:00AM',
   },
 ];
+
+export interface MENU_LIST_I {
+  id: number;
+  title: string;
+  icon: any;
+}
+
+export const MENU_LIST_DATA: MENU_LIST_I[] = [
+  {
+    id: 0,
+    title: 'Account',
+    icon: 'chevron-right',
+  },
+  {
+    id: 1,
+    title: 'Settings',
+    icon: 'chevron-right',
+  },
+  {
+    id: 2,
+    title: 'Privacy Policy',
+    icon: 'chevron-right',
+  },
+  {
+    id: 3,
+    title: 'Contact Us',
+    icon: 'chevron-right',
+  },
+  {
+    id: 4,
+    title: 'Ask Help',
+    icon: 'chevron-right',
+  },
+  {
+    id: 5,
+    title: 'Logout',
+    icon: 'chevron-right',
+  },
+];

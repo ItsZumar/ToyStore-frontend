@@ -32,5 +32,6 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontWeight: 'bold',
     color: Colors.black,
+    fontFamily: 'Poppins-BlackItalic',
   },
 });

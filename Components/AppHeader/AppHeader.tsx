@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     color: Colors.black,
+    fontFamily: 'Poppins-BlackItalic',
   },
   iconContainer: {
     backgroundColor: Colors.primary,
