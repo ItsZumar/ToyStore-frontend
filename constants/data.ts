@@ -216,3 +216,37 @@ export const MENU_LIST_DATA: MENU_LIST_I[] = [
     icon: 'chevron-right',
   },
 ];
+
+export interface SETTINGS_ITEMS_I {
+  id: number;
+  title: string;
+  icon: any;
+}
+
+export const SETTINGS_ITEMS: SETTINGS_ITEMS_I[] = [
+  {
+    id: 0,
+    title: 'Personal',
+    icon: 'person-circle',
+  },
+  {
+    id: 1,
+    title: 'Privacy Policy',
+    icon: 'lock-closed',
+  },
+  {
+    id: 2,
+    title: 'Contact Us',
+    icon: 'phone-portrait-outline',
+  },
+  {
+    id: 4,
+    title: 'Export Data',
+    icon: 'download',
+  },
+  {
+    id: 5,
+    title: 'Logout',
+    icon: 'log-out',
+  },
+];
