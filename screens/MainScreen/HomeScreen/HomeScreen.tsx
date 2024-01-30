@@ -1,15 +1,12 @@
 import React from 'react';
-import {Dimensions, FlatList, ScrollView, StyleSheet, View} from 'react-native';
+import {Dimensions, FlatList, StyleSheet, View} from 'react-native';
 import {
   AppHeader,
-  MenuList,
   SeeAllHeading,
   ToysCard,
   TrendyCard,
 } from '../../../Components';
 import {
-  MENU_LIST_DATA,
-  MENU_LIST_I,
   PRODUCTS_DATA,
   PRODUCTS_DATA_I,
   TRENDY_PRODUCTS_DATA,
@@ -28,6 +25,7 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
+import {Menu} from './Menu';
 
 interface HomeScreenProps {
   navigation: any;
@@ -36,23 +34,32 @@ interface HomeScreenProps {
 
 const {width: windowWidth} = Dimensions.get('window');
 const THRESHOLD_VALUE = windowWidth * 0.5;
-
-const Menu = () => (
-  <View
-    style={{
-      flex: 1,
-      marginTop: 20,
-    }}>
-    {MENU_LIST_DATA.map((menuItem: MENU_LIST_I) => (
-      <MenuList menuItem={menuItem} />
-    ))}
-  </View>
-);
+const TOUCH_SLOP = 5;
+const TIME_TO_ACTIVATE_PAN = 400;
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({navigation, route}) => {
   const translateX = useSharedValue(0);
+  const touchStart = useSharedValue({x: 0, y: 0, time: 0});
 
   const panEvents = Gesture.Pan()
+    .manualActivation(true)
+    .onTouchesDown(e => {
+      touchStart.value = {
+        x: e.changedTouches[0].x,
+        y: e.changedTouches[0].y,
+        time: Date.now(),
+      };
+    })
+    .onTouchesMove((e, state) => {
+      if (Date.now() - touchStart.value.time > TIME_TO_ACTIVATE_PAN) {
+        state.activate();
+      } else if (
+        Math.abs(touchStart.value.x - e.changedTouches[0].x) > TOUCH_SLOP ||
+        Math.abs(touchStart.value.y - e.changedTouches[0].y) > TOUCH_SLOP
+      ) {
+        state.fail();
+      }
+    })
     .onChange(event => {
       translateX.value += event.changeX;
     })
@@ -107,13 +114,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({navigation, route}) => {
           style={{
             flex: 1,
             backgroundColor: Colors.lightGrey,
-            flexDirection: 'row',
           }}>
-          <Animated.View style={{position: 'absolute'}}>
-            <Menu />
-          </Animated.View>
+          <Menu />
           <GestureDetector gesture={panEvents}>
-            <Animated.View style={[{flex: 1}, rStyle]}>
+            <Animated.ScrollView
+              style={[{flex: 1}, rStyle]}
+              showsVerticalScrollIndicator={false}>
               <AppHeader
                 title="Toys Store"
                 rightIcon="bell"
@@ -121,49 +127,37 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({navigation, route}) => {
                 onRightPress={onRightPressHandler}
                 onLeftPress={onLeftPressHandler}
               />
-              <Animated.View style={[styles.container]}>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                  <SeeAllHeading title="Best Selling Toys" />
-                  <View
-                    style={{
-                      width: '93%',
-                      alignSelf: 'center',
-                    }}>
-                    <FlatList
-                      data={PRODUCTS_DATA.slice(0, 4)}
-                      columnWrapperStyle={{
-                        flex: 1,
-                        justifyContent: 'space-around',
-                        paddingBottom: 10,
-                      }}
-                      showsVerticalScrollIndicator={false}
-                      contentContainerStyle={{
-                        justifyContent: 'space-between',
-                        gap: 4,
-                      }}
-                      numColumns={2}
-                      renderItem={({item}) => (
-                        <ToysCard
-                          item={item}
-                          onPressHandler={onToysCardPress}
-                        />
-                      )}
-                      keyExtractor={item => item.id.toString()}
-                    />
-                  </View>
-                  <SeeAllHeading title="Popular and trendy" />
+              <View style={[styles.container]}>
+                <SeeAllHeading title="Best Selling Toys" />
+                <View
+                  style={{
+                    width: '93%',
+                    alignSelf: 'center',
+                  }}>
+                  <FlatList
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    data={PRODUCTS_DATA.slice(0, 4)}
+                    contentContainerStyle={{
+                      justifyContent: 'space-between',
+                      gap: 10,
+                    }}
+                    renderItem={({item}) => (
+                      <ToysCard item={item} onPressHandler={onToysCardPress} />
+                    )}
+                    keyExtractor={item => item.id.toString()}
+                  />
+                </View>
 
-                  <View style={styles.trendyCards}>
-                    {TRENDY_PRODUCTS_DATA.slice(0, 4).map(product => (
-                      <TrendyCard
-                        product={product}
-                        key={product.id.toString()}
-                      />
-                    ))}
-                  </View>
-                </ScrollView>
-              </Animated.View>
-            </Animated.View>
+                <SeeAllHeading title="Popular and trendy" />
+
+                <View style={styles.trendyCards}>
+                  {TRENDY_PRODUCTS_DATA.slice(0, 4).map(product => (
+                    <TrendyCard product={product} key={product.id.toString()} />
+                  ))}
+                </View>
+              </View>
+            </Animated.ScrollView>
           </GestureDetector>
         </View>
       </GestureHandlerRootView>

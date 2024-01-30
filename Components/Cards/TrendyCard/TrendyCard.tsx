@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import {TRENDY_PRODUCTS_I} from '../../../constants/data';
 import {Colors} from '../../../Utils';
@@ -32,7 +32,18 @@ export const TrendyCard = ({product}: TrendyCardI) => {
         {backgroundColor: ColorsPaleteLight[product.id]},
       ]}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View style={{width: 70, height: 70, backgroundColor: 'red'}}></View>
+        <View
+          style={{
+            width: 70,
+            height: 70,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Image
+            source={require('../../../assets/images/fan2.png')}
+            style={{width: 50, height: 50}}
+          />
+        </View>
         <View style={{marginLeft: 10}}>
           <Text style={styles.title}>{product.title}</Text>
           <Text style={styles.subTitle}>{product.subTitle}</Text>
