@@ -102,10 +102,10 @@ export const NotificationCard: React.FC<NotificationCardI> = ({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    padding: 15,
+    padding: 10,
     elevation: 2,
     marginHorizontal: 20,
-    borderRadius: 15,
+    borderRadius: 10,
     height: LIST_ITEM_HEIGHT,
     zIndex: 20,
     marginTop: 20,
